@@ -10,8 +10,8 @@ const findDuplicates = (arr) => {
 };
 
 const array = [1, 2, 3, 4, 5, 3, 6, 7, 2];-
-const duplicates = findDuplicates(array); // Use the correct function name
-console.log(duplicates); // Output: [3, 2]
+
+console.log(findDuplicates(array)); // Output: [3, 2]
 
 const functionDup = (arr) => {
   let dup = [];
@@ -27,7 +27,31 @@ const functionDup = (arr) => {
 };
 
 const duplicate = functionDup(array);
-console.log(duplicates, "_________________"); // Output: [3, 2]
+console.log(duplicate, "_________________"); // Output: [3, 2]
+
+
+const countDuplicateOccurrences = (arr) => {
+  let dup = {}; // Initialize an object to store duplicates and their counts
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] === arr[j]) {
+        if (dup[arr[i]]) {
+          dup[arr[i]] += 1; 
+        } else {
+          dup[arr[i]] = 2; 
+        }
+      }
+    }
+  }
+
+  return dup;
+};
+
+
+const duplicateCounts = countDuplicateOccurrences([1, 2, 3, 4, 5, 3, 6, 7, 2]);
+console.log(duplicateCounts,">>>>>>>>>>>>>Dupli"); // Output: { '3': 2, '2': 2 }
+
 
 const occurence = (arr) => {
   let count = {};
@@ -37,21 +61,37 @@ const occurence = (arr) => {
   return count;
 };
 const occurrences = occurence(array);
-console.log(occurrences);
+console.log(occurrences,"---occurrences");
 
-const countVowels = (str) => {
-  const vowels = "aeiouAEIOU";
-  let counts = { a: 0, e: 0, i: 0, o: 0, u: 0 };
-  for (let char of str) {
-    if (vowels.includes(char)) {
-      counts[char] = counts[char.toLowerCase()] + 1;
+
+const occurenceWithoutBuiltIn = (arr) => {
+  let count = {}; // Initialize an empty object to store the counts
+
+  // Iterate over the array using a basic for loop
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i]; // Get the current element
+
+    // If the element already exists in the object, increment its count
+    if (count[element]) {
+      count[element] += 1;
+    } else {
+      // If the element does not exist in the object, initialize its count to 1
+      count[element] = 1;
     }
   }
-  return counts;
+
+  return count; // Return the object with the counts
 };
-const inputString = "Hello World, this is a test string!";
-const vowelCounts = countVowels(inputString);
-console.log(vowelCounts);
+
+
+const occurrencess = occurenceWithoutBuiltIn([1, 2, 3, 4, 5, 3, 6, 7, 2]);
+console.log(occurrencess, "---occurrencess"); // Output: { '1': 1, '2': 2, '3': 2, '4': 1, '5': 1, '6': 1, '7': 1 }
+
+
+
+
+
+
 
 const swapElement = (arr) => {
   let temp = arr[0];
